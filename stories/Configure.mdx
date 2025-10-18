@@ -1,0 +1,328 @@
+import { Meta } from "@storybook/addon-docs/blocks";
+
+import Github from "./assets/github.svg";
+import Discord from "./assets/discord.svg";
+import Youtube from "./assets/youtube.svg";
+import Tutorials from "./assets/tutorials.svg";
+import Styling from "./assets/styling.png";
+import Context from "./assets/context.png";
+import Assets from "./assets/assets.png";
+import Docs from "./assets/docs.png";
+import Share from "./assets/share.png";
+import FigmaPlugin from "./assets/figma-plugin.png";
+import Testing from "./assets/testing.png";
+import Accessibility from "./assets/accessibility.png";
+import Theming from "./assets/theming.png";
+import AddonLibrary from "./assets/addon-library.png";
+
+export const RightArrow = () => <svg 
+    viewBox="0 0 14 14" 
+    width="8px" 
+    height="14px" 
+    style={{ 
+      marginLeft: '4px',
+      display: 'inline-block',
+      shapeRendering: 'inherit',
+      verticalAlign: 'middle',
+      fill: 'currentColor',
+      'path fill': 'currentColor'
+    }}
+>
+  <path d="m11.1 7.35-5.5 5.5a.5.5 0 0 1-.7-.7L10.04 7 4.9 1.85a.5.5 0 1 1 .7-.7l5.5 5.5c.2.2.2.5 0 .7Z" />
+</svg>
+
+<Meta title="Snake Eater UI" />
+
+<div className="sb-container">
+  <div className='sb-section-title'>
+    # Snake Eater UI Component Library
+
+    A dark-themed React component library featuring boxy, minimalist design with thin borders and no rounded corners. Built for modern web applications that demand a sleek, cyberpunk aesthetic.
+  </div>
+  <div className="sb-section">
+    <div className="sb-section-item">
+      <h4 className="sb-section-item-heading">🎨 Design Philosophy</h4>
+      <p className="sb-section-item-paragraph">Snake Eater UI embraces a dark, minimalist aesthetic with sharp corners and subtle borders. Every component is designed to reduce eye strain while maintaining high contrast and readability.</p>
+    </div>
+    <div className="sb-section-item">
+      <h4 className="sb-section-item-heading">🚀 Quick Start</h4>
+      <p className="sb-section-item-paragraph">Install the library and start using our pre-built components immediately. All components are TypeScript-ready and include comprehensive props for customization.</p>
+    </div>
+    <div className="sb-section-item">
+      <h4 className="sb-section-item-heading">🔧 Built with Modern Tech</h4>
+      <p className="sb-section-item-paragraph">Developed using React 18, TypeScript, and Storybook 9. Every component is thoroughly tested and documented with interactive examples.</p>
+    </div>
+  </div>
+</div>
+
+<div className="sb-container">
+  <div className='sb-section-title'>
+    # Component Overview
+
+    Explore our growing collection of dark-themed components, each designed with flexibility and consistency in mind.
+  </div>
+
+  <div className="sb-section">
+    <div className="sb-features-grid">
+      <div className="sb-grid-item">
+        <h4 className="sb-section-item-heading">Button Component</h4>
+        <p className="sb-section-item-paragraph">Multiple variants including primary, secondary, ghost, danger, and a unique cyber variant with clipped corners. Supports loading states and full customization.</p>
+        <a href="?path=/story/components-button--default">View Button Stories<RightArrow /></a>
+      </div>
+      <div className="sb-grid-item">
+        <h4 className="sb-section-item-heading">Card Components</h4>
+        <p className="sb-section-item-paragraph">Two card variants: Card with decorative corner elbows and SubCard with plus symbols. Both support multiple color schemes, sizes, and interactive states.</p>
+        <a href="?path=/story/components-card--default">View Card Stories<RightArrow /></a>
+      </div>
+      <div className="sb-grid-item">
+        <h4 className="sb-section-item-heading">Filter Component</h4>
+        <p className="sb-section-item-paragraph">Unique bracketed design with gaps in borders. Perfect for toggleable filters with support for icons, counts, and multiple color variants.</p>
+        <a href="?path=/story/components-filter--default">View Filter Stories<RightArrow /></a>
+      </div>
+      <div className="sb-grid-item">
+        <h4 className="sb-section-item-heading">Header Component</h4>
+        <p className="sb-section-item-paragraph">Responsive header with authentication controls and user menu. Automatically adapts to different screen sizes with a mobile-friendly design.</p>
+        <a href="?path=/story/components-header--logged-in">View Header Stories<RightArrow /></a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div className='sb-addon'>
+  <div className='sb-addon-text'>
+    <h4>Design System</h4>
+    <p className="sb-section-item-paragraph">Built on a comprehensive token system for colors, spacing, typography, and transitions.</p>
+    <a href="?path=/story/page--default">View Complete Demo<RightArrow /></a>
+  </div>
+  <div className='sb-addon-img'>
+    <img src={AddonLibrary} alt="Snake Eater UI Design System" />
+  </div>
+</div>
+
+<div className="sb-container">
+  <div className='sb-section-title'>
+    # Key Features
+
+    What makes Snake Eater UI special
+  </div>
+  <div className="sb-section">
+    <div className="sb-section-item">
+      <h4 className="sb-section-item-heading">Dark Theme First</h4>
+      <p className="sb-section-item-paragraph">Every component is designed from the ground up for dark interfaces. Colors are carefully chosen to reduce eye strain while maintaining excellent readability.</p>
+    </div>
+    <div className="sb-section-item">
+      <h4 className="sb-section-item-heading">Geometric Design</h4>
+      <p className="sb-section-item-paragraph">No rounded corners here. Every element features sharp, clean edges with thin borders that create clear visual hierarchy without overwhelming the interface.</p>
+    </div>
+    <div className="sb-section-item">
+      <h4 className="sb-section-item-heading">Flexible Theming</h4>
+      <p className="sb-section-item-paragraph">While dark-themed by default, components support variant colors for success, warning, danger, and info states. Mix and match to create your perfect palette.</p>
+    </div>
+  </div>
+</div>
+
+<div className="sb-section sb-socials">
+    <div className="sb-section-item">
+      <img src={Github} alt="Github logo" className="sb-explore-image"/>
+      Contribute to Snake Eater UI development.
+
+      <a
+        href="https://github.com/your-repo/snake-eater-ui"
+        target="_blank"
+      >Star on GitHub<RightArrow /></a>
+    </div>
+    <div className="sb-section-item">
+      <img src={Discord} alt="Discord logo" className="sb-explore-image"/>
+      <div>
+        Join our community for support and updates.
+
+        <a
+          href="https://discord.gg/your-discord"
+          target="_blank"
+        >Join Discord<RightArrow /></a>
+      </div>
+    </div>
+    <div className="sb-section-item">
+      <img src={Docs} alt="Documentation" className="sb-explore-image"/>
+      <div>
+        Read the full documentation and API reference.
+
+        <a
+          href="?path=/docs/components-button--docs"
+          target="_blank"
+        >Browse Docs<RightArrow /></a>
+      </div>
+    </div>
+    <div className="sb-section-item">
+      <img src={Tutorials} alt="Getting Started" className="sb-explore-image"/>
+      <p>Learn how to integrate Snake Eater UI into your project.</p>
+
+      <a
+          href="?path=/story/page--default"
+          target="_blank"
+        >Get Started<RightArrow /></a>
+    </div>
+</div>
+
+<style>
+  {`
+  .sb-container {
+    margin-bottom: 48px;
+  }
+
+  .sb-section {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+  }
+
+  img {
+    object-fit: cover;
+  }
+
+  .sb-section-title {
+    margin-bottom: 32px;
+  }
+
+  .sb-section a:not(h1 a, h2 a, h3 a) {
+    font-size: 14px;
+    color: #61dafb;
+  }
+
+  .sb-section-item, .sb-grid-item {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .sb-section-item-heading {
+    padding-top: 20px !important;
+    padding-bottom: 5px !important;
+    margin: 0 !important;
+    color: #bdbdbd;
+  }
+  .sb-section-item-paragraph {
+    margin: 0;
+    padding-bottom: 10px;
+    color: #8e8e90;
+  }
+
+  .sb-chevron {
+    margin-left: 5px;
+  }
+
+  .sb-features-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 32px 20px;
+  }
+
+  .sb-socials {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .sb-socials p {
+    margin-bottom: 10px;
+    color: #8e8e90;
+  }
+
+  .sb-explore-image {
+    max-height: 32px;
+    align-self: flex-start;
+  }
+
+  .sb-addon {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    position: relative;
+    background-color: #1f1d20;
+    border-radius: 0;
+    border: 1px solid #3a3a3a;
+    background: #1f1d20;
+    height: 180px;
+    margin-bottom: 48px;
+    overflow: hidden;
+  }
+
+  .sb-addon-text {
+    padding-left: 48px;
+    max-width: 240px;
+  }
+
+  .sb-addon-text h4 {
+    padding-top: 0px;
+    color: #bdbdbd;
+  }
+
+  .sb-addon-img {
+    position: absolute;
+    left: 345px;
+    top: 0;
+    height: 100%;
+    width: 200%;
+    overflow: hidden;
+  }
+
+  .sb-addon-img img {
+    width: 650px;
+    transform: rotate(-15deg);
+    margin-left: 40px;
+    margin-top: -72px;
+    box-shadow: 0 0 1px rgba(255, 255, 255, 0);
+    backface-visibility: hidden;
+  }
+
+  @media screen and (max-width: 800px) {
+    .sb-addon-img {
+      left: 300px;
+    }
+  }
+
+  @media screen and (max-width: 600px) {
+    .sb-section {
+      flex-direction: column;
+    }
+
+    .sb-features-grid {
+      grid-template-columns: repeat(1, 1fr);
+    }
+
+    .sb-socials {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .sb-addon {
+      height: 280px;
+      align-items: flex-start;
+      padding-top: 32px;
+      overflow: hidden;
+    }
+
+    .sb-addon-text {
+      padding-left: 24px;
+    }
+
+    .sb-addon-img {
+      right: 0;
+      left: 0;
+      top: 130px;
+      bottom: 0;
+      overflow: hidden;
+      height: auto;
+      width: 124%;
+    }
+
+    .sb-addon-img img {
+      width: 1200px;
+      transform: rotate(-12deg);
+      margin-left: 0;
+      margin-top: 48px;
+      margin-bottom: -40px;
+      margin-left: -24px;
+    }
+  }
+  `}
+</style>

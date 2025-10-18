@@ -1,0 +1,347 @@
+import React, { useState } from 'react';
+import { Button } from './Button/Button';
+import { Card } from './Card/Card';
+import { Select } from './Select/Select';
+import { Badge } from './Badge/Badge';
+import { Progress } from './Progress/Progress';
+import { Tabs } from './Tabs/Tabs';
+import { Table } from './Table/Table';
+import { IconButton } from './IconButton/IconButton';
+import { Alert } from './Alert/Alert';
+import { Stat } from './Stat/Stat';
+import { Heading } from './Heading/Heading';
+import { Text } from './Text/Text';
+import { Divider } from './Divider/Divider';
+import { List } from './List/List';
+import { LineGraph } from './LineGraph/LineGraph';
+import { BarGraph } from './BarGraph/BarGraph';
+import { DonutGraph } from './DonutGraph/DonutGraph';
+import './page.css';
+import { SubCard } from './SubCard/SubCard';
+
+export const PageAnalytics: React.FC = () => {
+  const [timeRange, setTimeRange] = useState('24h');
+  const [showDetails, setShowDetails] = useState(false);
+  const [alertsExpanded, setAlertsExpanded] = useState(true);
+
+  const metrics = [
+    { label: 'Total Requests', value: '2.4M', change: '+12.5%', trend: 'up' },
+    { label: 'Avg Response Time', value: '124ms', change: '-8.2%', trend: 'down' },
+    { label: 'Error Rate', value: '0.12%', change: '-0.03%', trend: 'down' },
+    { label: 'Active Users', value: '8,421', change: '+234', trend: 'up' },
+  ];
+
+  // Graph data
+  const requestTrend = {
+    name: 'Requests',
+    data: Array.from({ length: 24 }, (_, i) => ({
+      x: i,
+      y: 80000 + Math.random() * 40000 + Math.sin(i / 3) * 20000,
+    })),
+  };
+
+  const errorRates = [
+    { label: '2xx Success', value: 87, color: '#50fa7b' },
+    { label: '3xx Redirect', value: 8, color: '#f1fa8c' },
+    { label: '4xx Client', value: 4, color: '#ffb86c' },
+    { label: '5xx Server', value: 1, color: '#ff5555' },
+  ];
+
+  const dailyMetrics = [
+    { label: 'Mon', requests: 2100, errors: 12, latency: 120 },
+    { label: 'Tue', requests: 2400, errors: 8, latency: 110 },
+    { label: 'Wed', requests: 2300, errors: 15, latency: 125 },
+    { label: 'Thu', requests: 2600, errors: 6, latency: 105 },
+    { label: 'Fri', requests: 2800, errors: 10, latency: 115 },
+    { label: 'Sat', requests: 1800, errors: 4, latency: 95 },
+    { label: 'Sun', requests: 1600, errors: 3, latency: 90 },
+  ];
+
+  const performanceData = [
+    { endpoint: '/api/users', calls: '542K', avgTime: '89ms', p99: '234ms', errors: '0.08%' },
+    { endpoint: '/api/data', calls: '1.2M', avgTime: '156ms', p99: '412ms', errors: '0.15%' },
+    { endpoint: '/api/auth', calls: '234K', avgTime: '45ms', p99: '123ms', errors: '0.02%' },
+    { endpoint: '/api/analytics', calls: '89K', avgTime: '234ms', p99: '567ms', errors: '0.45%' },
+  ];
+
+  return (
+    <div className="snake-page">
+      <div className="snake-page__example">
+        <div className="snake-page__header">
+          <div>
+            <Heading as="h1" size="xl">
+              Analytics Dashboard
+            </Heading>
+            <Text variant="muted">Real-time system performance metrics</Text>
+          </div>
+          <div style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
+            <Select
+              value={timeRange}
+              onChange={(e) => setTimeRange(e.target.value)}
+              options={[
+                { value: '1h', label: 'Last Hour' },
+                { value: '24h', label: 'Last 24 Hours' },
+                { value: '7d', label: 'Last 7 Days' },
+                { value: '30d', label: 'Last 30 Days' },
+              ]}
+              size="small"
+            />
+            <Button variant="secondary" size="small">
+              Export Report
+            </Button>
+            <Button variant="primary" size="small" onClick={() => setShowDetails(!showDetails)}>
+              {showDetails ? 'Hide' : 'Show'} Details
+            </Button>
+          </div>
+        </div>
+
+        <Divider variant="accent" spacing="large" />
+
+        <Card>
+          <div style={{ display: 'flex', flexDirection: 'row', gap: '0' }}>
+            {metrics.map((metric) => (
+              <SubCard key={metric.label} variant="bordered" hoverable>
+                <Stat
+                  label={metric.label}
+                  value={metric.value}
+                  change={{
+                    value: metric.change,
+                    type: metric.trend === 'up' ? 'increase' : 'decrease',
+                  }}
+                  variant="stacked"
+                  color={
+                    metric.trend === 'up' && metric.label !== 'Error Rate'
+                      ? 'success'
+                      : metric.trend === 'down' && metric.label === 'Error Rate'
+                        ? 'success'
+                        : 'danger'
+                  }
+                />
+              </SubCard>
+            ))}
+          </div>
+        </Card>
+
+        <Divider variant="dashed" />
+
+        {/* Graph Section */}
+        <div
+          style={{
+            display: 'grid',
+            gridTemplateColumns: '2fr 1fr',
+            gap: '20px',
+            marginBottom: '20px',
+          }}
+        >
+          <Card
+            header={
+              <Heading as="h3" size="md">
+                Request Volume
+              </Heading>
+            }
+          >
+            <LineGraph
+              data={requestTrend}
+              height={250}
+              showGrid={true}
+              curve="smooth"
+              fill={true}
+              fillOpacity={0.2}
+              animate={true}
+              formatY={(v) => `${(v / 1000).toFixed(0)}k`}
+            />
+          </Card>
+
+          <Card
+            header={
+              <Heading as="h3" size="md">
+                Response Codes
+              </Heading>
+            }
+          >
+            <DonutGraph
+              data={errorRates}
+              height={250}
+              showLegend={true}
+              showValues={true}
+              animate={true}
+              variant="interactive"
+            />
+          </Card>
+        </div>
+
+        {/* Bar Chart Section */}
+        <Card
+          header={
+            <Heading as="h3" size="md">
+              Weekly Metrics
+            </Heading>
+          }
+          style={{ marginBottom: '20px' }}
+        >
+          <BarGraph
+            data={dailyMetrics}
+            height={200}
+            orientation="vertical"
+            showGrid={true}
+            animate={true}
+          />
+        </Card>
+
+        <div className="snake-page__content-grid">
+          <Card
+            header={
+              <div
+                style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}
+              >
+                <Heading as="h3" size="md">
+                  Performance Overview
+                </Heading>
+                <Badge variant="success" style="dot">
+                  Live
+                </Badge>
+              </div>
+            }
+            size="large"
+          >
+            <Tabs
+              tabs={[
+                { id: 'endpoints', label: 'By Endpoint' },
+                { id: 'regions', label: 'By Region' },
+                { id: 'services', label: 'By Service' },
+              ]}
+              variant="underline"
+              size="small"
+            />
+
+            <div style={{ marginTop: '20px' }}>
+              <Table
+                data={performanceData}
+                columns={[
+                  { key: 'endpoint', header: 'Endpoint' },
+                  { key: 'calls', header: 'Total Calls', align: 'right' },
+                  { key: 'avgTime', header: 'Avg Time', align: 'right' },
+                  { key: 'p99', header: '99th Percentile', align: 'right' },
+                  {
+                    key: 'errors',
+                    header: 'Error Rate',
+                    align: 'right',
+                    render: (value) => (
+                      <Badge variant={parseFloat(value) > 0.2 ? 'danger' : 'success'} size="small">
+                        {value}
+                      </Badge>
+                    ),
+                  },
+                ]}
+                size="small"
+                variant="bordered"
+              />
+            </div>
+
+            {showDetails && (
+              <>
+                <Divider spacing="small" />
+                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '16px' }}>
+                  <div>
+                    <Text size="sm" variant="muted">
+                      Database Latency
+                    </Text>
+                    <Progress value={23} variant="success" size="small" showLabel />
+                  </div>
+                  <div>
+                    <Text size="sm" variant="muted">
+                      Cache Hit Rate
+                    </Text>
+                    <Progress value={87} variant="primary" size="small" showLabel />
+                  </div>
+                  <div>
+                    <Text size="sm" variant="muted">
+                      Queue Depth
+                    </Text>
+                    <Progress value={45} variant="warning" size="small" showLabel />
+                  </div>
+                </div>
+              </>
+            )}
+          </Card>
+
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+            <Card
+              header={
+                <div
+                  style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}
+                >
+                  <Heading as="h3" size="md">
+                    System Alerts
+                  </Heading>
+                  <IconButton
+                    icon={alertsExpanded ? '−' : '+'}
+                    size="small"
+                    variant="ghost"
+                    onClick={() => setAlertsExpanded(!alertsExpanded)}
+                  />
+                </div>
+              }
+            >
+              {alertsExpanded && (
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                  <Alert variant="danger" size="small">
+                    High memory usage detected on server cluster A
+                  </Alert>
+                  <Alert variant="warning" size="small">
+                    API rate limit approaching threshold (85%)
+                  </Alert>
+                  <Alert variant="info" size="small">
+                    Scheduled maintenance window in 2 hours
+                  </Alert>
+                  <Alert variant="success" size="small">
+                    All systems operational
+                  </Alert>
+                </div>
+              )}
+            </Card>
+
+            <Card
+              header={
+                <Heading as="h3" size="md">
+                  Quick Actions
+                </Heading>
+              }
+            >
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                <Button variant="secondary" size="small" fullWidth>
+                  Clear Cache
+                </Button>
+                <Button variant="secondary" size="small" fullWidth>
+                  Restart Services
+                </Button>
+                <Button variant="cyber" size="small" fullWidth>
+                  Run Diagnostics
+                </Button>
+              </div>
+            </Card>
+
+            <Card
+              header={
+                <Heading as="h3" size="md">
+                  Traffic Distribution
+                </Heading>
+              }
+            >
+              <List
+                items={[
+                  { content: 'North America', meta: '45%' },
+                  { content: 'Europe', meta: '28%' },
+                  { content: 'Asia Pacific', meta: '18%' },
+                  { content: 'Other Regions', meta: '9%' },
+                ]}
+                variant="simple"
+                size="small"
+              />
+            </Card>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};

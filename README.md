@@ -3,12 +3,6 @@
 A dark-themed React component library built with TypeScript and Storybook, featuring a minimalist cyberpunk aesthetic with sharp corners and thin borders.
 **Based off of [Steve Lauda](https://x.com/stevelauda_) design work.**
 
-![npm version](https://img.shields.io/npm/v/snake-eater-ui)
-![NPM Last Update](https://img.shields.io/npm/last-update/snake-eater-ui)
-![NPM Downloads](https://img.shields.io/npm/dy/snake-eater-ui)
-![license](https://img.shields.io/badge/license-GPL--3.0-blue)
-![typescript](https://img.shields.io/badge/TypeScript-Ready-blue)
-
 <div align="center">
   <img src="https://raw.githubusercontent.com/asynchronous-x/snake-eater-ui/refs/heads/main/patch.webp" alt="Snake Eater UI Banner" width="100%" />
 </div>
